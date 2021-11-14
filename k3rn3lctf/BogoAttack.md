@@ -1,6 +1,43 @@
 # BogoAttack
+## Statement
+The problem contains the source code only.
+```
+import random
+NUMS = list(range(10**4))
+random.shuffle(NUMS)
+tries = 15
+while True:
+    try:
+        n = int(input('Enter (1) to steal and (2) to guess: '))
+        if n == 1:
+            if tries==0:
+                print('You ran out of tries. Bye!')
+                break
+            l = map(int,input('Enter numbers to steal: ').split(' '))
+            output = []
+            for i in l:
+                assert 0<= i < len(NUMS)
+                output.append(NUMS[i])
+            random.shuffle(output)
+            print('Stolen:',output)
+            tries-=1
+        elif n == 2:
+            l = list(map(int,input('What is the list: ').split(' ')))
+            if l == NUMS:
+                print(open('flag.txt','r').read())
+                break
+            else:
+                print('NOPE')
+                break
+        else:
+            print('Not a choice.')
+    except:
+        print('Error. Nice Try...')
+
+```
+After analyzing the source code, I shortly describe the problem below.
 ## Short description
-Given an array of **10000 elements** from 0-9999 that is random shuffled (or we can call that is a permutation). Our target is finding out that array. We can ask the server **at most 15 queries** with the following format:
+Given an array of **10000 elements** from 0-9999 that is random shuffled (or we can call that is a permutation). Our target is finding out that array. If we answer the correct array, the server will return the flag. But we can ask the server **at most 15 queries** with the following format:
 ```
 x1 x2 ... xk
 ```
