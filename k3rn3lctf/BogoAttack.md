@@ -1,5 +1,5 @@
 # BogoAttack
-## Short description:
+## Short description
 Given an array of **10000 elements** from 0-9999 that is random shuffled (or we can call that is a permutation). Our target is finding out that array. We can ask the server **at most 15 queries** with the following format:
 ```
 x1 x2 ... xk
@@ -26,7 +26,7 @@ After that, I can find the position for each value, for example:
 * For value `7`, it appears in `Query 2`, so the position of value `7` is `2^2 = 4`.
 
 Here is the general algorithm to solve with 10000 elements:
-* Step 1: Prepare 13 queries (because numbers in `[0-9999]` has at most 13 bits without leading zeros in the binary form), where the i-th query contains all the positions with the i-th bit is turned on.
+* Step 1: Prepare **13 queries** (because numbers in `[0-9999]` has at most 13 bits without leading zeros in the binary form), where the i-th query contains all the positions with the i-th bit is turned on.
 * Step 2: For the i-th query, if the value `x` appears, add `2^i` to the array `P[x]`. After 13 queries, `P[x]` is the position of value `x`.
 * Step 3: Send the answer to the server and receive the flag.
 
